@@ -9,6 +9,18 @@ install webpack and linters globally. note: copy pasting code from the web to te
 # run lint
 > eslint file1.js file2.js
 
-# Plans
+## Development
+> export NODE_ENV=development  //export for linux and mac and set for windows to persist
+node index.js
+
+## Staging
+
+## Production
+> webpack --config webpack.production.config.js -p
+
+# To do
 > universal javascript app
 using inline styles
+docker  build
+environment settings
+
