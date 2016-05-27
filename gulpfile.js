@@ -1,19 +1,34 @@
 var gulp = require('gulp');
-var webpack = require('webpack')
-var path = require('path');
-var htmlmin = require('gulp-htmlmin')
 var WebpackDevServer = require('webpack-dev-server');
+var webpackStream = require('webpack-stream');
+var webpack = require('webpack')
 var config = require('./webpack.config');
 
-gulp.task('uglify', function () {
-    return gulp.src('./src/html/*.html')
-        .pipe(htmlmin({collapseWhitespace: true}))
-        .pipe(gulp.dest('./dist/html'))
+//dependencies of commented code below
+//var webpack = require('webpack')
+//var path = require('path');
+//var htmlmin = require('gulp-htmlmin')
+
+//for setting up environments in the future
+//var environment = require('./environment.js');
+
+//Will use webpack uglify components instead
+//gulp.task('uglify', function () {
+//    return gulp.src('./src/html/*.html')
+//        .pipe(htmlmin({collapseWhitespace: true}))
+//        .pipe(gulp.dest('./dist/html'))
+//});
+
+gulp.task('webpackStream', function() {
+    return gulp.src('./src/app.js')
+        .pipe(webpackStream(require('./webpack.config.js')))
+        .pipe(gulp.dest('./dist'));
 });
 
 gulp.task('webpack', function () {
 
     new WebpackDevServer(webpack(config), {
+        contentBase: "./dist/html/",
         publicPath: config.output.publicPath,
         hot: true,
         historyApiFallback: true
@@ -48,4 +63,4 @@ gulp.task('webpack', function () {
 //})
 //gulp.task('default', ['uglify', 'webpack', 'serve:web',watch]);
 
-gulp.task('default', ['uglify', 'webpack']);
+gulp.task('default', ['webpackStream','webpack']);

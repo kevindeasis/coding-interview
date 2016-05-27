@@ -11,7 +11,11 @@ install webpack and linters globally. note: copy pasting code from the web to te
 
 ## Development
 > export NODE_ENV=development  //export for linux and mac and set for windows to persist
-node index.js
+gulp //will start the development server
+
+###Note:
+the path value of contentBase property of object passed to WebpackDevServer.
+the index.html of this path is the rendered SPA html by webpack.
 
 ## Staging
 
