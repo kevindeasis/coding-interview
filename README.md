@@ -18,11 +18,16 @@ the path value of contentBase property of object passed to WebpackDevServer.
 the index.html of this path is the rendered SPA html by webpack.
 
 ## Staging
+>setup will be prepared soon
 
 ## Production
 > webpack --config webpack.production.config.js -p
 
-# To do
+#to do ui/ux
+>progressive img reload
+responsive img
+
+# To do dev
 > universal javascript app
 using inline styles
 docker  build

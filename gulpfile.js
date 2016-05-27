@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var serve = require('gulp-serve');
 var WebpackDevServer = require('webpack-dev-server');
 var webpackStream = require('webpack-stream');
 var webpack = require('webpack')
@@ -31,7 +32,10 @@ gulp.task('webpack', function () {
         contentBase: "./dist/html/",
         publicPath: config.output.publicPath,
         hot: true,
-        historyApiFallback: true
+        historyApiFallback: true,
+        proxy: {
+            "/*": "http://localhost:8000/dist"
+       }
     }).listen(3000, 'localhost', function (err, result) {
         if (err) {
             return console.log(err);
@@ -52,10 +56,10 @@ gulp.task('webpack', function () {
 //        .pipe(gulp.dest('./dist'));
 //});
 //
-//gulp.task('serve:web', serve({
-//    root: ['./dist/html/','.'],
-//    port: 8000
-//}));
+gulp.task('serve:web', serve({
+    root: ['.'],
+    port: 8000
+}));
 
 //// Watch, not live-reload
 //gulp.task('watch', function () {
@@ -63,4 +67,4 @@ gulp.task('webpack', function () {
 //})
 //gulp.task('default', ['uglify', 'webpack', 'serve:web',watch]);
 
-gulp.task('default', ['webpackStream','webpack']);
+gulp.task('default', ['webpackStream','serve:web','webpack']);
