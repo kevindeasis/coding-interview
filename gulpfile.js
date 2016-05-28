@@ -2,7 +2,10 @@ var gulp = require('gulp');
 var serve = require('gulp-serve');
 var WebpackDevServer = require('webpack-dev-server');
 var webpackStream = require('webpack-stream');
+var express = require('express');
+var nodemon = require('nodemon')
 var webpack = require('webpack')
+var path = require('path')
 var config = require('./webpack.config');
 
 //dependencies of commented code below
@@ -20,7 +23,7 @@ var config = require('./webpack.config');
 //        .pipe(gulp.dest('./dist/html'))
 //});
 
-gulp.task('webpackStream', function() {
+gulp.task('webpackStream', function () {
     return gulp.src('./src/app.js')
         .pipe(webpackStream(require('./webpack.config.js')))
         .pipe(gulp.dest('./dist'));
@@ -28,15 +31,20 @@ gulp.task('webpackStream', function() {
 
 gulp.task('webpack', function () {
 
-    new WebpackDevServer(webpack(config), {
-        contentBase: "./dist/html/",
+    var devServer = new WebpackDevServer(webpack(config), {
+        contentBase: "./dist/html", //"./dist/html/",
         publicPath: config.output.publicPath,
         hot: true,
         historyApiFallback: true,
-        proxy: {
-            "/*": "http://localhost:8000/dist"
-       }
-    }).listen(3000, 'localhost', function (err, result) {
+        // old config for proxy
+        //proxy: {
+        //    "/dist/*": "http://localhost:8000/"
+        //}
+    })
+
+    devServer.use('/static/', express.static(path.join(__dirname, './dist/')));
+
+    devServer.listen(3000, 'localhost', function (err, result) {
         if (err) {
             return console.log(err);
         }
@@ -56,10 +64,21 @@ gulp.task('webpack', function () {
 //        .pipe(gulp.dest('./dist'));
 //});
 //
-gulp.task('serve:web', serve({
-    root: ['.'],
-    port: 8000
-}));
+
+//old static server
+//gulp.task('serve:web', function () {
+//
+//        var isRunning = false;
+//        return nodemon({
+//            script: './lib/devServer.js'
+//        }).on('start', function () {
+//            if (!isRunning) {
+//                started = true;
+//            }
+//        });
+//    }
+//);
+
 
 //// Watch, not live-reload
 //gulp.task('watch', function () {
@@ -67,4 +86,4 @@ gulp.task('serve:web', serve({
 //})
 //gulp.task('default', ['uglify', 'webpack', 'serve:web',watch]);
 
-gulp.task('default', ['webpackStream','serve:web','webpack']);
+gulp.task('default', ['webpackStream', 'webpack']);

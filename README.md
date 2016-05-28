@@ -23,6 +23,10 @@ the index.html of this path is the rendered SPA html by webpack.
 ## Production
 > webpack --config webpack.production.config.js -p
 
+#to do immediately
+> hot/live reload webpack and gulp servers simultaneously
+maybe add browser sync
+
 #to do ui/ux
 >progressive img reload
 responsive img
