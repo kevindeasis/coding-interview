@@ -14,29 +14,16 @@
     <link href="/static/css/materialize.min.css" type="text/css" rel="stylesheet"/>
 </head>
 
-<style>
-    header, main, footer {
-        padding-left: 240px;
-    }
-
-    @media only screen and (max-width: 992px) {
-        header, main, footer {
-            padding-left: 0;
-        }
-    }
-</style>
-
 <div id="slide-out" class="side-nav fixed">
     <div>
-        <div class="row" style="background-color:rebeccapurple;height:64px;  display: flex;
-  flex-direction: row;">
+        <div class="row" style="background-color:rebeccapurple;height:64px;margin-bottom:0;display:flex;flex-direction: row;">
             <img src="/static/img/logo.png" style="height:64px;width: 64px">
-            <h4 style="align-self:center;margin-left: 40px"> Logo</h4>
+            <h4 style="align-self:center;margin-left: 20px"> Logo</h4>
         </div>
         <div>
-            <li><a href="#!">Nices Sidebar Link</a></li>
-            <li><a href="#!">Second Sidebar Link</a></li>
-            <li><a href="#!">Second Sidebar Link</a></li>
+            <div><a href="#!">Nices Sidebar Link</a></div>
+            <div><a href="#!">Second Sidebar Link</a></div>
+            <div><a href="#!">Second Sidebar Link</a></div>
         </div>
     </div>
 </div>
@@ -45,13 +32,16 @@
 
 <header>
     <nav class="light-blue lighten-1" role="navigation">
-        <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
-            <ul class="right hide-on-med-and-down">
-                <li><a href="#">Navbar Link</a></li>
-            </ul>
-
-            <ul id="nav-mobile" class="side-nav">
-                <li><a href="#">Navbar Link</a></li>
+        <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">
+            Logo
+            <button class="pulse"></button>
+        </a>
+            <ul class="right">
+                <li>
+                    <a href="#" style="padding-right: 0">
+                            <e style="color:#dfdfdf">Jane Doe</e> (120)
+                    </a>
+                </li>
             </ul>
             <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
         </div>
@@ -61,11 +51,22 @@
 
 <main>
 
+    <div class="">
+        <div class="col s12" style="background-color: white">
+            <div class="container">
+                <ul class="tabs">
+                    <li class="tab col s3"><a style="text-align: left" href="#test1">Test 1</a></li>
+                    <li class="tab col s3"><a class="active" href="#test2">Test 3</a></li>
+                    <li class="tab col s3"><a style="text-align: right" href="#test4">Test 4</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
     <div class="section no-pad-bot" id="index-banner">
         <div class="container">
 
-            <div class="row">
+            <div class="row hide-on-small-only">
                 <div class="col s12 m4">
                     <div class="card-panel teal">
                         <div class="white-text">
@@ -97,11 +98,10 @@
                             <div class="input-field col">
                                 <input placeholder="Placeholder" id="first_name" type="text" class="validate">
                             </div>
-                            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                            <a href="#!" class="secondary-content"><i class="material-icons">help</i></a>
                         </div>
                     </li>
                     <li class="right-align" style="background-color:#f8f8f8">
-                        <a class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>button</a>
                         <button class="btn waves-effect waves-light" type="submit" name="action">Submit
                             <i class="material-icons right">send</i>
                         </button>
@@ -220,7 +220,7 @@
 <footer class="page-footer">
     <div class="container">
         <div class="row">
-            <nav >
+            <nav>
                 <div class="nav-wrapper">
                     <div class="col s12">
                         <a href="#!" class="breadcrumb">First</a>
@@ -246,10 +246,66 @@
 
 <script>
     $(document).ready(function () {
-        $(".button-collapse").sideNav();
+        $(".button-collapse").sideNav({
+            menuWidth: 200,
+        });
         $('#first_name').focus();
     });
 </script>
+
+<style>
+    header, main, footer {
+        padding-left: 200px;
+    }
+
+    @media only screen and (max-width: 992px) {
+        header, main, footer {
+            padding-left: 0;
+        }
+    }
+</style>
+
+<style>
+    .pulse {
+        width: 15px;
+        height: 15px;
+        border: none;
+        box-shadow: 0 0 0 0 #d8d8d8;
+        border-radius: 50%;
+        background-color: #d8d8d8;
+        background-size: cover;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        -webkit-animation: pulse 2.25s infinite cubic-bezier(0.66, 0, 0, 1);
+        -moz-animation: pulse 2.25s infinite cubic-bezier(0.66, 0, 0, 1);
+        -ms-animation: pulse 2.25s infinite cubic-bezier(0.66, 0, 0, 1);
+        animation: pulse 2.25s infinite cubic-bezier(0.66, 0, 0, 1);
+    }
+
+    @-webkit-keyframes pulse {
+        to {
+            box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);
+        }
+    }
+
+    @-moz-keyframes pulse {
+        to {
+            box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);
+        }
+    }
+
+    @-ms-keyframes pulse {
+        to {
+            box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);
+        }
+    }
+
+    @keyframes pulse {
+        to {
+            box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);
+        }
+    }
+</style>
 
 </body>
 </html>
