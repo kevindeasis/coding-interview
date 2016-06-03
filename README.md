@@ -20,6 +20,16 @@ the index.html of this path is the rendered SPA html by webpack.
 ## Staging
 >setup will be prepared soon
 
+# Docker
+When using a mac we need to find the ip using:
+>docker-machine ip
+
+Find our port using one of the methods
+>docker ps //get port under column name 'PORTS' or its name
+or
+docker port <Container_Name> <Port Number>
+
+
 ## Production
 > webpack --config webpack.production.config.js -p
 
