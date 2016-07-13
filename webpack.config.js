@@ -4,7 +4,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
-        "js/app": ["./src/app.js", 'webpack-dev-server/client?http://0.0.0.0:3000','webpack/hot/only-dev-server' ]
+        "js/app": ['babel-polyfill',"./src/app.js", 'webpack-dev-server/client?http://0.0.0.0:3000','webpack/hot/only-dev-server' ]
     },
     output: {
         path: __dirname + "/dist",
